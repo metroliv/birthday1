@@ -158,7 +158,8 @@ button{
       padding: 10px;
       position: absolute;
       bottom: 0;
-      width: 50%;
+      width: 100%;
+      overflow: hidden;
     }
 
     #videoControls button {
