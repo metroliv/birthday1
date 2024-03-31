@@ -147,11 +147,7 @@ button{
             font-size: 18px;
             line-height: 1.6;
         }
-#myVideo {
-      width: 640px;
-      height: 360px;
-    margin-right: 20px;
-    }
+
 
     #videoControls {
       background-color: rgba(0, 0, 0, 0.7);
