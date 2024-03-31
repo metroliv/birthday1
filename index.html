@@ -38,6 +38,11 @@
         <h2>Countdown to April 7</h2>
         <div id="countdown-home"></div><br>
         <buton> <li><a href="#" onclick="toggleContent('contact')">Contact information</a></li></buton>
+        
+        <video id="myVideo" width="640" height="360" controls>
+          <source src="happy.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+</video>
     </div>
   
     <div class="content" id="event-schedule" style="display: none;">
@@ -107,6 +112,26 @@
 <!-- Particles.js Library -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
+    var video = document.getElementById("myVideo");
+
+  function playPause() {
+    if (video.paused)
+      video.play();
+    else
+      video.pause();
+  }
+
+  function makeBig() {
+    video.width = 960;
+  }
+
+  function makeSmall() {
+    video.width = 640;
+  }
+
+  function makeNormal() {
+    video.width = 640;
+  }
   // Toggle content visibility
 function toggleContent(id) {
     // Hide all content sections first
