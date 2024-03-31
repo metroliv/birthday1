@@ -121,8 +121,21 @@ a:hover {
   text-decoration: underline;
 }
 .contact1{
-    margin-top: 60%;
+    margin-top: 30%%;
     margin-right: 20%
+    list-style-type: none;
+  padding: 0;
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 footer {
