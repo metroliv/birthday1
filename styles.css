@@ -131,4 +131,19 @@ footer {
 button{
     background-color: beige;
 }
-
+.birthday-wish {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+        }
