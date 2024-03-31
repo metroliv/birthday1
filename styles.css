@@ -149,24 +149,5 @@ button{
         }
 
 
-    #videoControls {
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    #videoControls button {
-      background-color: transparent;
-      border: none;
-      color: white;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    #videoControls button:hover {
-      color: #ccc;
-    }
+   
+   
