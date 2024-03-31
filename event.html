@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Input and Display</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group input[type="date"],
+    .form-group input[type="time"],
+    .form-group input[type="file"] {
+        width: calc(100% - 10px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-group input[type="file"] {
+        padding: 10px 0;
+    }
+
+    .form-group input[type="file"]::-webkit-file-upload-button {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-group input[type="file"]::-webkit-file-upload-button:hover {
+        background-color: #45a049;
+    }
+
+    .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    .event-item {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-item h3 {
+        margin-top: 0;
+    }
+
+    .event-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-group">
+        <label for="eventTitle">Event Title</label>
+        <input type="text" id="eventTitle" placeholder="Event Title">
+    </div>
+    <div class="form-group">
+        <label for="eventDescription">Event Description</label>
+        <textarea id="eventDescription" placeholder="Event Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="eventLocation">Event Location</label>
+        <input type="text" id="eventLocation" placeholder="Event Location">
+    </div>
+    <div class="form-group">
+        <label for="eventDate">Event Date</label>
+        <input type="date" id="eventDate">
+    </div>
+    <div class="form-group">
+        <label for="eventTime">Event Time</label>
+        <input type="time" id="eventTime">
+    </div>
+    <div class="form-group">
+        <label for="eventImage">Event Picture</label>
+        <input type="file" id="eventImage">
+    </div>
+    <button class="btn" onclick="addEvent()">Add Event</button>
+</div>
+
+<div id="eventList"></div>
+
+<script>
+    // Load events from localStorage when the page loads
+    window.onload = function() {
+        loadEvents();
+    };
+
+    function addEvent() {
+        var titleInput = document.getElementById("eventTitle");
+        var descriptionInput = document.getElementById("eventDescription");
+        var locationInput = document.getElementById("eventLocation");
+        var dateInput = document.getElementById("eventDate");
+        var timeInput = document.getElementById("eventTime");
+        var imageInput = document.getElementById("eventImage");
+
+        var title = titleInput.value.trim();
+        var description = descriptionInput.value.trim();
+        var location = locationInput.value.trim();
+        var date = dateInput.value;
+        var time = timeInput.value;
+        var image = imageInput.files[0]; // Assuming a single image is uploaded
+
+        if (title === "" || date === "" || time === "") {
+            alert("Please fill in the required fields: Title, Date, Time");
+            return;
+        }
+
+        var eventList = document.getElementById("eventList");
+        var listItem = document.createElement("div");
+        listItem.classList.add("event-item");
+
+        var eventInfo = document.createElement("div");
+        eventInfo.innerHTML = "<h3>" + title + "</h3>" +
+                              "<p><strong>Description:</strong> " + description + "</p>" +
+                              "<p><strong>Location:</strong> " + location + "</p>" +
+                              "<p><strong>Date:</strong> " + date + "</p>" +
+                              "<p><strong>Time:</strong> " + time + "</p>";
+
+        listItem.appendChild(eventInfo);
+
+        if (image) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = document.createElement("img");
+                img.src = event.target.result;
+                listItem.appendChild(img);
+            };
+            reader.readAsDataURL(image);
+        }
+
+        eventList.appendChild(listItem);
+
+        // Save the event to localStorage
+        saveEvent(title, description, location, date, time, image);
+
+        // Clear input fields
+        titleInput.value = "";
+        descriptionInput.value = "";
+        locationInput.value = "";
+        dateInput.value = "";
+        timeInput.value = "";
+        imageInput.value = null; // Clear the file input
+    }
+
+    function saveEvent(title, description, location, date, time, image) {
+        var events = JSON.parse(localStorage.getItem("events")) || [];
+        var newEvent = {
+            title: title,
+            description: description,
+            location: location,
+            date: date,
+            time: time,
+            image: image ? URL.createObjectURL(image) : null
+        };
+        events.push(newEvent);
+        localStorage.setItem("events", JSON.stringify(events));
+    }
+
+    function loadEvents() {
+        var eventList = document.getElementById("eventList");
+        var events = JSON.parse(localStorage.getItem("events")) || [];
+
+        events.forEach(function(event) {
+            var listItem = document.createElement("div");
+            listItem.classList.add("event-item");
+
+            var eventInfo = document.createElement("div");
+            eventInfo.innerHTML = "<h3>" + event.title + "</h3>" +
+                                  "<p><strong>Description:</strong> " + event.description + "</p>" +
+                                  "<p><strong>Location:</strong> " + event.location + "</p>" +
+                                  "<p><strong>Date:</strong> " + event.date + "</p>" +
+                                  "<p><strong>Time:</strong> " + event.time + "</p>";
+
+            listItem.appendChild(eventInfo);
+
+            if (event.image) {
+                var img = document.createElement("img");
+                img.src = event.image;
+                listItem.appendChild(img);
+            }
+
+            eventList.appendChild(listItem);
+        });
+    }
+</script>
+
+</body>
+</html>

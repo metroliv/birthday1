@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purity Kyalo's Birthday Wishes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <header>
+     <img src="pury.jpeg">
+     <h1> 🎈🎉happy birthday dear puity kyalo 🎈🎉</h1>
+ </header>
+<!-- Particles.js -->
+<div id="particles-js"></div>
+
+<div class="container">
+    <div class="countdown" id="countdown"></div>
+    <div id="balloons">🎈🎉 Happy Birthday Purity! 🎉🎈</div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul>
+            <li><a href="#" onclick="toggleContent('home')">Home</a></li>
+            <li><a href="#" onclick="toggleContent('event-schedule')">Event Schedule</a></li>
+            <li><a href="#" onclick="toggleContent('gifts')">Gifts from Friends</a></li>
+            <li><a href="#" onclick="toggleContent('pictures')">Purity's Pictures and Friends</a></li>
+            <li><a href="#" onclick="toggleContent('contact')">Contact Information and Social Media Links</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Sections -->
+    <div class="content" id="home" style="display: none;" active>
+        <h2>Countdown to April 7</h2>
+        <div id="countdown-home"></div>
+    </div>
+
+    <div class="content" id="event-schedule" style="display: none;">
+        <h2>Event Schedule</h2>
+        <a href="event.html">view</a>
+        <!-- Add event details here -->
+    </div>
+
+    <div class="content" id="gifts" style="display: none;">
+        <h2>Gifts from Friends</h2>
+        <img src="gift.jpeg">
+        <img src="gift1.jpeg">
+        <img src="gift2.jpeg">
+        <img src="gift3.jpeg">
+        <!-- JavaScript or backend code required -->
+    </div>
+
+    <div class="content" id="pictures" style="display: none;">
+        <h2>Purity's Pictures and Friends</h2>
+        <!-- Add pictures and friend details here -->
+    </div>
+
+    <div class="content" id="contact" style="display: none;">
+        <h2>Contact Information and Social Media Links</h2>
+        
+  <section id="contact">
+    <h2>Contact Information</h2>
+    <ul>
+      <li>Email: <a href="mailto:puritykyslo05@gmail.com">youremail@example.com</a></li>
+      <li>Phone: <a href="tel:+254742932981">+254742932981</a></li>
+    </ul>
+
+    <h2>Social Media</h2>
+    <ul>
+      <li><a href="https://www.facebook.com/purry charly" target="_blank">Facebook</a></li>
+      <li><a href="https://twitter.com/yourtwitter" target="_blank">Twitter</a></li>
+      <li><a href="https://www.instagram.com/yourinstagram" target="_blank">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/yourlinkedin" target="_blank">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/yourchannel" target="_blank">YouTube</a></li>
+    </ul>
+
+    <h2>Chat</h2>
+    <ul>
+      <li><a href="https://wa.me/+254742932981" target="_blank">WhatsApp</a></li>
+      <li><a href="https://m.me/purry charly(ceccy)" target="_blank">Facebook Messenger</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Contact Me</p>
+  </footer>
+  
+
+    </div>
+</div>
+
+<!-- Particles.js Library -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  // Toggle content visibility
+function toggleContent(id) {
+    // Hide all content sections first
+    var contents = document.getElementsByClassName("content");
+    for (var i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+    }
+    // Show only the selected content section
+    var content = document.getElementById(id);
+    content.style.display = "block";
+}
+
+// Function to calculate countdown
+function countdown() {
+    const currentDate = new Date();
+    const targetDate = new Date(currentDate.getFullYear(), 3 - 1, 7); // April is 3 because it's zero-based index
+
+    const diff = targetDate - currentDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = `Countdown to Purity's Birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById("countdown-home").innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+
+    if (diff <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("balloons").style.display = "block";
+    }
+}
+
+// Update countdown every second
+const countdownInterval = setInterval(countdown, 1000);
+
+// Initial call to display countdown on page load
+countdown();
+
+    // Particle.js Configuration
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: "#ffffff" },
+            shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, image: { src: "img/github.svg", width: 100, height: 100 } },
+            opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+            size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+            line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
+            modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+        },
+        retina_detect: true
+    });
+</script>
+
+</body>
+</html>
