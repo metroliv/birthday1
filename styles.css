@@ -150,6 +150,7 @@ button{
 #myVideo {
       width: 640px;
       height: 360px;
+    margin-right: 20px;
     }
 
     #videoControls {
